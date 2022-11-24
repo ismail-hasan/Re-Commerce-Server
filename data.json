@@ -1,0 +1,65 @@
+[
+    {
+        "catagoryId": "1",
+        "name":"Prelude N40 Pro",
+        "brand":"walton",
+        "price":432,
+        "dec":"In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without"
+    },
+    {
+        "catagoryId":"1",
+        "name":"del 3.0",
+        "brand":"walton",
+        "price":465,
+        "dec":"In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without"
+    },
+    {
+        "catagoryId":"1",
+        "name":"nosto pro",
+        "brand":"walton",
+        "price":555,
+        "dec":"In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without"
+    },
+    {
+        "catagoryId":"2",
+        "name":"sundor laptop",
+        "brand":"samsung",
+        "price":444,
+        "dec":"In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without"
+    },
+    {
+        "catagoryId":"2",
+        "name":"laptop of mac",
+        "brand":"samsung",
+        "price":432,
+        "dec":"In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without"
+    },
+    {
+        "catagoryId":"2",
+        "name":"relevel pro",
+        "brand":"samsung",
+        "price":452,
+        "dec":"In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without"
+    },
+    {
+        "catagoryId":"3",
+        "name":"area net",
+        "brand":"assus",
+        "price":544,
+        "dec":"In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without"
+    },
+    {
+        "catagoryId":"3",
+        "name":"N40 hit",
+        "brand":"assus",
+        "price":837,
+        "dec":"In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without"
+    },
+    {
+        "catagoryId":"3",
+        "name":"apple macs like",
+        "brand":"assus",
+        "price":792,
+        "dec":"In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without"
+    }
+]
