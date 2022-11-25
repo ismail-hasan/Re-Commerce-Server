@@ -22,8 +22,19 @@ async function run() {
 
     const laptopCollection = client.db('laptop').collection('allLaptop')
     const bookingCollection = client.db('laptop').collection('bookings')
+    const userCollection = client.db('laptop').collection('users')
 
     try {
+
+        // user jwt token 
+
+        // register user save api 
+        app.post('/users', async (req, res) => {
+            const user = req.body
+            const result = await userCollection.insertOne(user)
+            res.send(result)
+        })
+
         // user booking laptop api 
         app.post('/bookings', async (req, res) => {
             const booking = req.body
