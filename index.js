@@ -46,6 +46,12 @@ async function run() {
 
         // all laptop find to database 
 
+        app.post('/allLaptop', async (req, res) => {
+            const laptop = req.body
+            const result = await laptopCollection.insertOne(laptop)
+            res.send(result)
+        })
+
         app.get('/alllaptops', async (req, res) => {
             const query = {}
             const result = await laptopCollection.find(query).toArray()
@@ -61,12 +67,12 @@ async function run() {
             res.send(result)
         })
 
-        app.get('/alllaptops', async (req, res) => {
-            const id = req.query.id
-            const query = { _id: ObjectId(id) }
-            const result = await laptopCollection.findOne(query)
-            res.send(result)
-        })
+        // app.get('/alllaptops', async (req, res) => {
+        //     const id = req.query.id
+        //     const query = { _id: ObjectId(id) }
+        //     const result = await laptopCollection.findOne(query)
+        //     res.send(result)
+        // })
 
 
     }
