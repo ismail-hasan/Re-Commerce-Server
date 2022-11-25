@@ -15,15 +15,37 @@ app.use(express.json())
 // mongodb 
 
 const uri = "mongodb+srv://laptop:Qnhp6hXeWicFvgBb@cluster0.w4v9v80.mongodb.net/?retryWrites=true&w=majority";
-console.log(uri);
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 
 async function run() {
 
     const laptopCollection = client.db('laptop').collection('allLaptop')
+    const bookingCollection = client.db('laptop').collection('bookings')
 
     try {
+        // user booking laptop api 
+        app.post('/bookings', async (req, res) => {
+            const booking = req.body
+            const result = await bookingCollection.insertOne(booking)
+            res.send(result)
+        })
+
+        app.get('/bookings', async (req, res) => {
+            const query = {}
+            const result = await bookingCollection.find(query).toArray()
+            res.send(result)
+        })
+
+        app.delete('/bookings/:id', async (req, res) => {
+            const id = req.params.id
+            const query = { _id: ObjectId(id) }
+            const result = await bookingCollection.deleteOne(query)
+            res.send(result)
+        })
+
+        // all laptop find to database 
+
         app.get('/alllaptops', async (req, res) => {
             const query = {}
             const result = await laptopCollection.find(query).toArray()
@@ -36,6 +58,13 @@ async function run() {
             const id = req.params.brand
             const query = { brand: id }
             const result = await laptopCollection.find(query).toArray()
+            res.send(result)
+        })
+
+        app.get('/alllaptops', async (req, res) => {
+            const id = req.query.id
+            const query = { _id: ObjectId(id) }
+            const result = await laptopCollection.findOne(query)
             res.send(result)
         })
 
