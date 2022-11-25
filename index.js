@@ -1,6 +1,9 @@
 const express = require('express');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const cors = require('cors')
+require('dotenv').config()
+const jwt = require('jsonwebtoken');
+// const { response } = require('express');
 const app = express()
 const port = process.env.PORT || 5000
 
@@ -18,6 +21,17 @@ const uri = "mongodb+srv://laptop:Qnhp6hXeWicFvgBb@cluster0.w4v9v80.mongodb.net/
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 
+// function verifyJWT(req, res, next) {
+//     const auhtHeader = req.headers.authorization
+//     if (!auhtHeader) {
+//         return res.status(401).send("unauthorize access")
+//     }
+
+//     const token = auhtHeader.split(" ")[1]
+
+
+// }
+
 async function run() {
 
     const laptopCollection = client.db('laptop').collection('allLaptop')
@@ -27,11 +41,33 @@ async function run() {
     try {
 
         // user jwt token 
+        // app.get('/jwt', async (req, res) => {
+        //     const email = req.query.email
+        //     const query = { email: email }
+        //     const result = await userCollection.findOne(query)
+        //     if (result) {
+        //         const token = jwt.sign({ email }, process.env.USER_TOKEN, { expiresIn: '1h' })
+        //         return res.send({ accessToken: token })
+        //     }
+        //     res.status(401).send({ accessToken: "" })
+        // })
 
         // register user save api 
         app.post('/users', async (req, res) => {
             const user = req.body
             const result = await userCollection.insertOne(user)
+            res.send(result)
+        })
+        app.get('/allusers', async (req, res) => {
+            const query = {}
+            const result = await userCollection.find(query).toArray()
+            res.send(result)
+        })
+        app.get('/user', async (req, res) => {
+            const email = req.query.email
+            console.log(email)
+            const query = { email: email }
+            const result = await userCollection.find(query).toArray()
             res.send(result)
         })
 
@@ -44,6 +80,13 @@ async function run() {
 
         app.get('/bookings', async (req, res) => {
             const query = {}
+            const result = await bookingCollection.find(query).toArray()
+            res.send(result)
+        })
+
+        app.get("/book", async (req, res) => {
+            const email = req.query.email
+            const query = { userEmail: email }
             const result = await bookingCollection.find(query).toArray()
             res.send(result)
         })
