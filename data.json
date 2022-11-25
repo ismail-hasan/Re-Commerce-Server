@@ -1,65 +1,81 @@
 [
     {
-        "catagoryId": "1",
-        "name":"Prelude N40 Pro",
+        "name":"walton leadpad 3",
         "brand":"walton",
         "price":432,
-        "dec":"In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without"
+        "sellPrice":120,
+        "photo":"https://i.ibb.co/rxHMpwQ/pexels-adam-sondel-1466609.jpg",
+        "dec":"A laptop is a personal computer that can be easily moved and used in a variety of locations. Most laptops are designed to have all of the functionality of a desktop computer"
     },
+
     {
-        "catagoryId":"1",
-        "name":"del 3.0",
+        
+        "name":"walton chromeBook 3cx",
         "brand":"walton",
         "price":465,
-        "dec":"In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without"
+        "sellPrice":220,
+        "dec":"All laptops have a hard drive, but what you should be looking for when you shop for a laptop is what type of hard drive they contain, and how much computing power it offers.",
+        "photo":"https://i.ibb.co/8xwxnsZ/pexels-burak-the-weekender-733758.jpg"
     },
+
     {
-        "catagoryId":"1",
-        "name":"nosto pro",
+        "name":"walton idelpad pro",
         "brand":"walton",
-        "price":555,
-        "dec":"In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without"
+        "price":655,
+        "sellPrice":340,
+        "dec":"All laptops have a hard drive, but what you should be looking for when you shop for a laptop is what type of hard drive they contain, and how much computing power it offers. Older and cheaper laptops often come with a mechanical hard drive (HDD)",
+        "photo":"https://i.ibb.co/fkpFMZQ/pexels-veeterzy-303383.jpg"
     },
+
     {
-        "catagoryId":"2",
-        "name":"sundor laptop",
+        "name":"samsung mac 7x",
         "brand":"samsung",
-        "price":444,
-        "dec":"In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without"
+        "price":355,
+        "sellPrice":250,
+        "dec":"his process will display the information about the laptop's computer make and model, operating system, RAM specifications",
+        "photo":"https://i.ibb.co/ZLkScZ4/pexels-craig-dennis-205421.jpg"
     },
+
     {
-        "catagoryId":"2",
-        "name":"laptop of mac",
+        "name":"samsung altra pro",
         "brand":"samsung",
-        "price":432,
-        "dec":"In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without"
+        "price":345,
+        "sellPrice":127,
+        "dec":"A laptop is a personal computer that can be easily moved and used in a variety of locations. Most laptops are designed to have all of the functionality of a desktop computer,",
+        "photo":"https://i.ibb.co/dr2QQyM/pexels-john-tekeridis-249541.jpg"
     },
+
     {
-        "catagoryId":"2",
-        "name":"relevel pro",
+        "name":"samsung deal nex",
         "brand":"samsung",
-        "price":452,
-        "dec":"In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without"
+        "price":135,
+        "sellPrice":121,
+        "dec":"A laptop is a personal computer that can be easily moved and used in a variety of locations. Most laptops are designed to have all of the functionality of a desktop computer,",
+        "photo":"https://i.ibb.co/JQfzZSD/pexels-photomix-company-246340.jpg"
     },
     {
-        "catagoryId":"3",
-        "name":"area net",
+        "name":"asus mac book",
         "brand":"assus",
-        "price":544,
-        "dec":"In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without"
+        "price":335,
+        "sellPrice":121,
+        "dec":"To check your PC hardware specs, click on the Windows Start button, then click on Settings (the gear icon). In the Settings menu, click on System. Scroll down and click on About. On this screen",
+        "photo":"https://i.ibb.co/7J0pwwV/pexels-tuur-tisseghem-812264-1.jpg"
     },
     {
-        "catagoryId":"3",
-        "name":"N40 hit",
+        "name":"asus silver note",
         "brand":"assus",
-        "price":837,
-        "dec":"In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without"
+        "price":222,
+        "sellPrice":191,
+        "dec":" window should appear summarizing your PC hardware specs including processor, Memory (RAM), and other system info, including Windows version.",
+        "photo":"https://i.ibb.co/7J0pwwV/pexels-tuur-tisseghem-812264-1.jpg"
     },
     {
-        "catagoryId":"3",
-        "name":"apple macs like",
+        "name":"asus pro 4xw",
         "brand":"assus",
-        "price":792,
-        "dec":"In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without"
+        "price":756,
+        "sellPrice":321,
+        "dec":"he technical specifications of desktop computers and laptops usually fall into the following categories: Processor, Memory, Graphics, and Storage. Depending on your needs",
+        "photo":"https://i.ibb.co/hXW99FW/pexels-cottonbro-studio-5083412.jpg"
     }
 ]
+    
