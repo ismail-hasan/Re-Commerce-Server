@@ -17,20 +17,30 @@ app.use(express.json())
 // password : Qnhp6hXeWicFvgBb
 // mongodb 
 
-const uri = "mongodb+srv://laptop:Qnhp6hXeWicFvgBb@cluster0.w4v9v80.mongodb.net/?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.w4v9v80.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 
-// function verifyJWT(req, res, next) {
-//     const auhtHeader = req.headers.authorization
-//     if (!auhtHeader) {
-//         return res.status(401).send("unauthorize access")
-//     }
-
-//     const token = auhtHeader.split(" ")[1]
+console.log(process.env.USER_TOKEN)
 
 
-// }
+function verifyJWT(req, res, next) {
+    const auhtHeader = req.headers.authorization
+    if (!auhtHeader) {
+        return res.status(401).send("unauthorize access")
+    }
+    const token = auhtHeader.split(" ")[1]
+    // console.log(token)
+    jwt.verify(token, process.env.USER_TOKEN, function (err, decoded) {
+        if (err) {
+            return res.status(403).send({ message: "forbidden access" })
+        }
+
+        req.decoded = decoded
+        next()
+    })
+
+}
 
 async function run() {
 
@@ -40,17 +50,18 @@ async function run() {
 
     try {
 
-        // user jwt token 
-        // app.get('/jwt', async (req, res) => {
-        //     const email = req.query.email
-        //     const query = { email: email }
-        //     const result = await userCollection.findOne(query)
-        //     if (result) {
-        //         const token = jwt.sign({ email }, process.env.USER_TOKEN, { expiresIn: '1h' })
-        //         return res.send({ accessToken: token })
-        //     }
-        //     res.status(401).send({ accessToken: "" })
-        // })
+        // user jwt token
+        app.get('/jwt', async (req, res) => {
+            const email = req.query.email
+            const query = { email: email }
+            const result = await userCollection.findOne(query)
+            if (result) {
+                const token = jwt.sign({ email }, process.env.USER_TOKEN, { expiresIn: '1d' })
+
+                return res.send({ accessToken: token })
+            }
+            res.status(401).send({ accessToken: "" })
+        })
 
         // register user save api 
         app.post('/users', async (req, res) => {
@@ -90,8 +101,13 @@ async function run() {
             res.send(result)
         })
 
-        app.get("/book", async (req, res) => {
+        app.get("/book", async (req, res) => { //veriryJWT
             const email = req.query.email
+            // const decodedEmail = req.decoded.email
+            // if (email !== decodedEmail) {
+            //     return res.status(403).send({ message: "forbeddin access" })
+            // }
+
             const query = { userEmail: email }
             const result = await bookingCollection.find(query).toArray()
             res.send(result)
@@ -126,13 +142,6 @@ async function run() {
             const result = await laptopCollection.find(query).toArray()
             res.send(result)
         })
-
-        // app.get('/alllaptops', async (req, res) => {
-        //     const id = req.query.id
-        //     const query = { _id: ObjectId(id) }
-        //     const result = await laptopCollection.findOne(query)
-        //     res.send(result)
-        // })
 
 
     }
