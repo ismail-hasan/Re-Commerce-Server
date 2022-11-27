@@ -4,7 +4,6 @@ const cors = require('cors')
 require('dotenv').config()
 const jwt = require('jsonwebtoken');
 const { query } = require('express');
-// const { response } = require('express');
 const app = express()
 const port = process.env.PORT || 5000
 
@@ -12,10 +11,6 @@ const port = process.env.PORT || 5000
 app.use(cors())
 app.use(express.json())
 
-
-//data base
-// username : laptop
-// password : Qnhp6hXeWicFvgBb
 // mongodb 
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.w4v9v80.mongodb.net/?retryWrites=true&w=majority`;
@@ -84,6 +79,14 @@ async function run() {
             res.send(result)
         })
 
+        app.get('/userroll', async (req, res) => {
+            const id = req.query.roll
+            console.log(id)
+            const query = { roll: id }
+            const result = await userCollection.find(query).toArray()
+            res.send(result)
+        })
+
 
         app.put('/allusers/varify/:id', async (req, res) => {
             const id = req.params.id
@@ -111,12 +114,12 @@ async function run() {
             res.send(result)
         })
 
-        app.get("/book", verifyJWT, async (req, res) => { //veriryJWT
+        app.get("/book", async (req, res) => { //veriryJWT
             const email = req.query.email
-            const decodedEmail = req.decoded.email
-            if (email !== decodedEmail) {
-                return res.status(403).send({ message: "forbeddin access" })
-            }
+            // const decodedEmail = req.decoded.email
+            // if (email !== decodedEmail) {
+            //     return res.status(403).send({ message: "forbeddin access" })
+            // }
 
             const query = { userEmail: email }
             const result = await bookingCollection.find(query).toArray()
@@ -174,7 +177,7 @@ async function run() {
                 }
             }
             //
-            const result = await laptopCollection.updateOne(query, options, updateDoc);
+            const result = await laptopCollection.updateOne(query, updateDoc, options);
             res.send(result)
         })
         app.get('/advites', async (req, res) => {
