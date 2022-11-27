@@ -3,6 +3,7 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const cors = require('cors')
 require('dotenv').config()
 const jwt = require('jsonwebtoken');
+const { query } = require('express');
 // const { response } = require('express');
 const app = express()
 const port = process.env.PORT || 5000
@@ -21,21 +22,16 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@clu
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 
-console.log(process.env.USER_TOKEN)
-
-
 function verifyJWT(req, res, next) {
     const auhtHeader = req.headers.authorization
     if (!auhtHeader) {
         return res.status(401).send("unauthorize access")
     }
     const token = auhtHeader.split(" ")[1]
-    // console.log(token)
     jwt.verify(token, process.env.USER_TOKEN, function (err, decoded) {
         if (err) {
             return res.status(403).send({ message: "forbidden access" })
         }
-
         req.decoded = decoded
         next()
     })
@@ -88,6 +84,20 @@ async function run() {
             res.send(result)
         })
 
+
+        app.put('/allusers/varify/:id', async (req, res) => {
+            const id = req.params.id
+            const query = { _id: ObjectId(id) }
+            const options = { upsert: true };
+            const updateDoc = {
+                $set: {
+                    isvarify: "varify"
+                }
+            }
+            const result = await userCollection.updateOne(query, updateDoc, options)
+            res.send(result)
+        })
+
         // user booking laptop api 
         app.post('/bookings', async (req, res) => {
             const booking = req.body
@@ -101,12 +111,12 @@ async function run() {
             res.send(result)
         })
 
-        app.get("/book", async (req, res) => { //veriryJWT
+        app.get("/book", verifyJWT, async (req, res) => { //veriryJWT
             const email = req.query.email
-            // const decodedEmail = req.decoded.email
-            // if (email !== decodedEmail) {
-            //     return res.status(403).send({ message: "forbeddin access" })
-            // }
+            const decodedEmail = req.decoded.email
+            if (email !== decodedEmail) {
+                return res.status(403).send({ message: "forbeddin access" })
+            }
 
             const query = { userEmail: email }
             const result = await bookingCollection.find(query).toArray()
@@ -134,11 +144,41 @@ async function run() {
             res.send(result)
         })
 
+        app.get('/laptop', async (req, res) => {
+            const email = req.query.email
+            console.log(email)
+            const query = { email: email }
+            const result = await laptopCollection.find(query).toArray()
+            res.send(result)
+        })
+
         // one  laptops 
 
         app.get('/alllaptops/:brand', async (req, res) => {
             const id = req.params.brand
             const query = { brand: id }
+            const result = await laptopCollection.find(query).toArray()
+            res.send(result)
+        })
+
+        app.patch('/advites/:id', async (req, res) => {
+            const id = req.params.id;
+            // const query = { advatise: true }
+
+            //
+            const query = { _id: ObjectId(id) }
+            const options = { upsert: true };
+            const updateDoc = {
+                $set: {
+                    advatise: true
+                }
+            }
+            //
+            const result = await laptopCollection.updateOne(query, options, updateDoc);
+            res.send(result)
+        })
+        app.get('/advites', async (req, res) => {
+            const query = { advatise: true }
             const result = await laptopCollection.find(query).toArray()
             res.send(result)
         })
