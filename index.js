@@ -184,6 +184,32 @@ async function run() {
             res.send(result)
         })
 
+        // report product api 
+        app.get('/report', async (req, res) => {
+            const query = { report: true }
+            const result = await laptopCollection.find(query).toArray()
+            res.send(result)
+        })
+
+        app.delete('/report/:id', async (req, res) => {
+            const id = req.params.id
+            const query = { _id: ObjectId(id) }
+            const result = await laptopCollection.deleteOne(query)
+            res.send(result)
+        })
+        app.put('/report/:id', async (req, res) => {
+            const id = req.params.id
+            const query = { _id: ObjectId(id) }
+            const options = { upsert: true }
+            const updateDoc = {
+                $set: {
+                    report: true
+                }
+            }
+            const result = await laptopCollection.updateOne(query, updateDoc, options)
+            res.send(result)
+        })
+
 
     }
     finally {
