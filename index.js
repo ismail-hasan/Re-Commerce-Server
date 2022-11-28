@@ -86,18 +86,18 @@ async function run() {
         })
 
 
-        app.put('/allusers/varify/:id', async (req, res) => {
-            const id = req.params.id
-            const query = { _id: ObjectId(id) }
-            const options = { upsert: true };
-            const updateDoc = {
-                $set: {
-                    isvarify: "varify"
-                }
-            }
-            const result = await userCollection.updateOne(query, updateDoc, options)
-            res.send(result)
-        })
+        // app.put('/alllaptops/varify/:id', async (req, res) => {
+        //     const id = req.params.id
+        //     const query = { _id: ObjectId(id) }
+        //     const options = { upsert: true };
+        //     const updateDoc = {
+        //         $set: {
+        //             isvarify: "varify"
+        //         }
+        //     }
+        //     const result = await laptopCollection.updateOne(query, updateDoc, options)
+        //     res.send(result)
+        // })
 
         // user booking laptop api 
         app.post('/bookings', async (req, res) => {
@@ -204,6 +204,36 @@ async function run() {
             const updateDoc = {
                 $set: {
                     report: true
+                }
+            }
+            const result = await laptopCollection.updateOne(query, updateDoc, options)
+            res.send(result)
+        })
+
+        // varify api 
+        // app.put('/varifylaptop/:id', async (req, res) => {
+
+        //     const id = req.params.id
+        //     const query = { _id: ObjectId(id) }
+        //     console.log(id, query)
+        //     const options = { upsert: true };
+        //     const updatedDoc = {
+        //         $set: {
+        //             isvarify: "varify"
+        //         }
+        //     }
+        //     const result = await laptopCollection.updateOne(query, updatedDoc, options)
+        //     res.send(result)
+        // })
+
+        app.patch('/alllaptop/:id', async (req, res) => {
+            const id = req.params.id
+            const query = { _id: ObjectId(id) }
+            console.log(id , query);
+            const options = { upsert: true }
+            const updateDoc = {
+                $set: {
+                    isvarify: "varify"
                 }
             }
             const result = await laptopCollection.updateOne(query, updateDoc, options)
