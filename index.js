@@ -164,9 +164,6 @@ async function run() {
 
         app.patch('/advites/:id', async (req, res) => {
             const id = req.params.id;
-            // const query = { advatise: true }
-
-            //
             const query = { _id: ObjectId(id) }
             const options = { upsert: true };
             const updateDoc = {
@@ -178,6 +175,7 @@ async function run() {
             const result = await laptopCollection.updateOne(query, updateDoc, options);
             res.send(result)
         })
+
         app.get('/advites', async (req, res) => {
             const query = { advatise: true }
             const result = await laptopCollection.find(query).toArray()
@@ -204,36 +202,6 @@ async function run() {
             const updateDoc = {
                 $set: {
                     report: true
-                }
-            }
-            const result = await laptopCollection.updateOne(query, updateDoc, options)
-            res.send(result)
-        })
-
-        // varify api 
-        // app.put('/varifylaptop/:id', async (req, res) => {
-
-        //     const id = req.params.id
-        //     const query = { _id: ObjectId(id) }
-        //     console.log(id, query)
-        //     const options = { upsert: true };
-        //     const updatedDoc = {
-        //         $set: {
-        //             isvarify: "varify"
-        //         }
-        //     }
-        //     const result = await laptopCollection.updateOne(query, updatedDoc, options)
-        //     res.send(result)
-        // })
-
-        app.patch('/alllaptop/:id', async (req, res) => {
-            const id = req.params.id
-            const query = { _id: ObjectId(id) }
-            console.log(id , query);
-            const options = { upsert: true }
-            const updateDoc = {
-                $set: {
-                    isvarify: "varify"
                 }
             }
             const result = await laptopCollection.updateOne(query, updateDoc, options)
